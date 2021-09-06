@@ -37,10 +37,11 @@ export class ButtonAction extends Component {
         
         for(let i=0;i<this.syringes.length;i++)
         {
-                tween(this.syringes[i].node)
+
+            this.syringes[i].node.active = true;
+                /*tween(this.syringes[i].node)
                     .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
-                    .start();
-                console.log('index '+ i);
+                    .start();*/
         }
         
     }
@@ -67,10 +68,12 @@ export class ButtonAction extends Component {
         {
             if(parseInt(index) != i)
             {
-                tween(this.syringes[i].node)
+                this.syringes[i].node.active = false;
+
+                /*tween(this.syringes[i].node)
                     .to(0.3,{scale : new Vec3(0,0,1)},{})
                     .start();
-                console.log('index '+ i);
+                console.log('index '+ i);*/
             }
         }
 
