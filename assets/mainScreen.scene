@@ -1492,10 +1492,6 @@
         "__id__": 35
       }
     ],
-    "actualImage": {
-      "__uuid__": "de451469-02d7-4134-bfc1-03b02985d732@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
     "image": {
       "__uuid__": "690b5278-5ef3-47c5-9b9c-6171e5b96117@f9941",
       "__expectedType__": "cc.SpriteFrame"

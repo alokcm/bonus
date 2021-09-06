@@ -17,9 +17,6 @@ export class ButtonAction extends Component {
     syringes = [];
 
     @property(SpriteFrame)
-    actualImage : SpriteFrame = null;
-
-    @property(SpriteFrame)
     image : SpriteFrame = null;
 
     @property(Node)
@@ -42,9 +39,6 @@ export class ButtonAction extends Component {
         {
                 tween(this.syringes[i].node)
                     .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
-                    .call(() =>{
-                        this.syringes[i].getComponent(Sprite).spriteFrame=this.actualImage;
-                    })
                     .start();
                 console.log('index '+ i);
         }
@@ -57,7 +51,7 @@ export class ButtonAction extends Component {
 
          //console.log(`botton presssed ` +  index  + ` data receved`);
         console.log('card ' + (parseInt(index)+1) + ' clicked');
-        let tempNode : Node = event.currentTarget;
+        let tempNode : EventTarget = event.currentTarget;
         tween(tempNode)
             .to(0.3,{scale : new Vec3(0,0.6,1)},{})
             .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
