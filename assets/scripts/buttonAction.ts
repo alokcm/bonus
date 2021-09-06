@@ -17,6 +17,9 @@ export class ButtonAction extends Component {
     syringes = [];
 
     @property(SpriteFrame)
+    actualImage : SpriteFrame = null;
+
+    @property(SpriteFrame)
     image : SpriteFrame = null;
 
     @property(Node)
@@ -32,25 +35,55 @@ export class ButtonAction extends Component {
         let nodeP = this.node.getChildByName('popUpImage');
         console.log({nodeP});
         tween(nodeP)
-            .to(1,{scale : new Vec3(0,0,0),angle : 90})
+            .to(0.2,{scale : new Vec3(0,0,1),angle : 90})
             .start();
+        
+        for(let i=0;i<this.syringes.length;i++)
+        {
+                tween(this.syringes[i].node)
+                    .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
+                    .call(() =>{
+                        this.syringes[i].getComponent(Sprite).spriteFrame=this.actualImage;
+                    })
+                    .start();
+                console.log('index '+ i);
+        }
+        
     }
 
     buttonAction(event : Event, index : string)
     {
+
+
          //console.log(`botton presssed ` +  index  + ` data receved`);
         console.log('card ' + (parseInt(index)+1) + ' clicked');
         let tempNode : Node = event.currentTarget;
         tween(tempNode)
-            .to(0.5,{scale : new Vec3(0,0.6,1)},{})
-            .to(0.5,{scale : new Vec3(0.6,0.6,1)},{})
-            .to(0.5,{scale : new Vec3(0.6,0.6,1)},{})
-            .to(0.5,{scale : new Vec3(0.6,0.6,1)},{})
+            .to(0.3,{scale : new Vec3(0,0.6,1)},{})
+            .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
+            .call(() =>{
+                this.syringes[parseInt(index)].getComponent(Sprite).spriteFrame=this.image;
+            })
+            .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
+            .to(0.3,{scale : new Vec3(0.6,0.6,1)},{})
             .start()
-            
+
+
+        for(let i=0;i<this.syringes.length;i++)
+        {
+            if(parseInt(index) != i)
+            {
+                tween(this.syringes[i].node)
+                    .to(0.3,{scale : new Vec3(0,0,1)},{})
+                    .start();
+                console.log('index '+ i);
+            }
+        }
+
+
         tween(this.nodePop)
-            .delay(1)
-            .to(0.5, {position: new Vec3(0,0,0), scale : new Vec3(1,1,1), angle : 90})
+            .delay(0.8)
+            .to(0.2, {position: new Vec3(0,0,0), scale : new Vec3(1,1,1), angle : 90})
             .start();
     }
     onLoad()
